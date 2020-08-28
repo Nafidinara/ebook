@@ -22,4 +22,5 @@ Route::prefix('v1')->group(function() {
     Route::get('/me','AuthController@me');
 
     Route::resource('books','BookController');
+    Route::resource('authors','AuthorController');
 });
