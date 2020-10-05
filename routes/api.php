@@ -19,8 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function() {
+    Route::post('register', 'UserController@register');
+    Route::post('login', 'UserController@login');
+
     Route::get('/me','AuthController@me');
 
-    Route::resource('books','BookController');
-    Route::resource('authors','AuthorController');
+    Route::resource('books','BookController')->middleware('jwt.verify');
+    Route::resource('authors','AuthorController')->middleware('jwt.verify');
 });
